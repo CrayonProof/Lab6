@@ -1,0 +1,75 @@
+size 0
+printList
+  string
+at 0 out_of_range
+at 1 out_of_range
+insertTail lazy
+size 1
+printList
+  string
+insertHead lazy
+size 2
+printList
+  string
+insertAfter dog. lazyy
+size 2
+printList
+  string
+insertAfter dog. lazy
+size 3
+printList
+  string
+insertTail dog.
+size 3
+printList
+  string
+insertHead fox
+size 4
+printList
+  string
+insertHead brown
+size 5
+printList
+  string
+insertHead quick
+size 6
+printList
+  string
+insertHead The
+size 7
+printList
+  string
+insertAfter quick brown
+size 7
+printList
+  string
+insertTail fox
+size 7
+printList
+  string
+insertAfter the fox
+size 8
+printList
+  string
+insertAfter jumps fox
+size 9
+printList
+  string
+insertAfter over jumps
+size 10
+printList
+  string
+size 10
+printList
+  string
+at 0 The
+at 1 quick
+at 2 brown
+at 3 fox
+at 4 jumps
+at 5 over
+at 6 the
+at 7 lazy
+at 8 dog.
+at 9 lazy
+at -1 out_of_range

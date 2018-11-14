@@ -35,35 +35,44 @@ class LinkedList
         };
     
     	void insertHead(T value)
-    	
     	{
-    	    if (head = NULL)
+    	    cout << "insertHead(" << value << ")" << endl;
+    	    
+    	    if (head == NULL)
+    	    {
+    	        head = new Node(value);
+    	        listSize ++;
     	        return;
+    	    }
+    	    
     	    Node* check = head;
+    	    
+    	    for (int i = 0; i < listSize - 1; i++)
+    	    {
+    	        cout << "(i) " << i << ": " << endl;
+    	        if (check->value == value)
+    	            return;
+	            check = check->next;
+    	    }
+    	    
+    	    Node *node = new Node(value);
+            node->next = head;
+            head = node;
+            listSize ++;
+    	}
+    
+        void insertTail(T value)
+        {
+            cout << "insertTail(" << value << ")" << endl;
+            
+            Node* check = head;
     	    
     	    for (int i = 0; i < listSize; i++)
     	    {
     	        if (check->value == value)
     	            return;
 	            check = check->next;
-    	    
-    	    
-    	    Node *n = new Node(value);
-            n->next = head;
-            head = n;
-            listSize ++;
-    	}
-    
-        void insertTail(T value)
-        {
-            Node* check = head;
-    	    
-    	    do
-    	    {
-    	        if (check->value == value)
-    	            return;
-	            check = check->next;
-    	    } while (check->next != NULL);
+    	    }
             
             if (head == NULL)
             {
@@ -83,59 +92,81 @@ class LinkedList
     	
         void insertAfter(T value, T insertionNode)
         {
+            cout << "insertAfter(" << value << "," << insertionNode << ")" << endl;
             Node* check = head;
             Node* insrtNode;
     	    
-    	    do
+    	    for (int i = 0; i < listSize - 1; i++)
     	    {
     	       if (check->value == value)
     	            return;
     	       if (insertionNode == check->value)
-    	            insrtNode = check;
-	            check = check->next;
-    	    } while (check->next != NULL);
-    	    
-    	    listSize++;
-    	    Node* nextNext = insrtNode->next;
-    	    insrtNode->next = new Node(value);
-    	    insrtNode->next->next = nextNext;   
+    	       {
+    	            if (check->next == NULL)
+            	    {
+            	        check->next = new Node(value);
+            	    }
+            	    else
+            	    {
+            	       Node* node = new Node(value);
+            	       node->next = check->next;
+            	       check->next = node;
+            	    }
+            	    listSize++;
+            	    return;
+    	       }
+	           check = check->next;
+    	    }
         }
     
         void remove(T value)
         {
-            Node* preCheck;
-            int counter = 0;
-            
-            if (head == NULL)
-                return;
-            else if (head->value == value)
-            {
-                listSize--;
-                head = head->next;
-                return;
-            }
+            cout << "remove(" << value << ")" << endl;
             
             Node* check = head;
-            
-            do
+            int i = 0;
+                
+            for (i = 0; i < listSize; i++)
     	    {
-    	       if (check->next->value == value)
+    	       if (check->value == value)
     	       {
-    	           listSize--;
-    	           check->next = check->next->next;
-    	           return;
+    	            break;
     	       }
-	           check = check->next;
-    	    } while (check->next != NULL);
+               check = check->next;
+    	    }
+            
+            if (i == 0)
+            {
+                Node *del = head;
+                head = head->next;
+                delete del;
+                listSize --;
+            }
+            else
+            {
+                Node *node = head;
+                for (int c = 0; c < i-1; c++) {
+                    node = node->next;
+                }
+                Node *del = check;
+                node->next = del->next;
+                delete del;
+                listSize--;
+            }
         }
     
         void clear()
         {
+            cout << "clear()" << endl;
+            
+            Node* nextNode;
             Node* node = head;
             
             for(int i = 0; i < listSize; i++)
             {
+                nextNode = node->next;
                 delete node;
+                node = nextNode;
             }
             
             listSize = 0;
@@ -144,21 +175,24 @@ class LinkedList
     
         T at(int index)
         {
+            cout << "at(" << index << ")" << endl;
+            
             Node* atNode = head;
             
             if ((index >= listSize) || (index < 0))
             {
                 cout << "Error: Out of range" << endl;
+                throw out_of_range("out of range");
             }
             else
             {
                for(int i = 0; i < index; i++)
                 {
                     atNode = atNode->next;
-                } 
+                }
+                return atNode->value;
             }
             
-            return atNode->value;
         }
         
     	int size()
@@ -168,6 +202,8 @@ class LinkedList
     	
     	string toString()
     	{
+    	    cout << "toString()" << endl;
+    	    
     	    Node* node = head;
     	    //basic_stringstream<T> out;
             string s = "";
@@ -186,7 +222,7 @@ class LinkedList
                 node = node->next;
             }
             
-            return "the string"; //out.str();
+            return "string"; //out.str();
     	}
     	private:
     	    Node* head;

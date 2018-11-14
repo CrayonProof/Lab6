@@ -1,0 +1,21 @@
+insertHead 10
+insertHead 9
+insertHead 8
+insertHead 7
+insertHead 6
+insertHead 5
+insertHead 4
+insertHead 3
+insertHead 2
+insertHead 1
+insertHead 0
+insertAfter -1 1
+insertAfter 9999 0
+insertAfter 12 10
+size 13
+printList
+  string
+remove -1
+size  12
+printList
+  string
