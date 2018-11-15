@@ -1,67 +1,67 @@
 size 0
 printList
-  string
+  
 at 0 out_of_range
 at 1 out_of_range
 insertTail lazy
 size 1
 printList
-  string
+  lazy
 insertHead lazy
 size 2
 printList
-  string
+  lazy lazy
 insertAfter dog. lazyy
 size 2
 printList
-  string
+  lazy lazy
 insertAfter dog. lazy
 size 3
 printList
-  string
+  lazy dog. lazy
 insertTail dog.
 size 3
 printList
-  string
+  lazy dog. lazy
 insertHead fox
 size 4
 printList
-  string
+  fox lazy dog. lazy
 insertHead brown
 size 5
 printList
-  string
+  brown fox lazy dog. lazy
 insertHead quick
 size 6
 printList
-  string
+  quick brown fox lazy dog. lazy
 insertHead The
 size 7
 printList
-  string
+  The quick brown fox lazy dog. lazy
 insertAfter quick brown
 size 7
 printList
-  string
+  The quick brown fox lazy dog. lazy
 insertTail fox
 size 7
 printList
-  string
+  The quick brown fox lazy dog. lazy
 insertAfter the fox
 size 8
 printList
-  string
+  The quick brown fox the lazy dog. lazy
 insertAfter jumps fox
 size 9
 printList
-  string
+  The quick brown fox jumps the lazy dog. lazy
 insertAfter over jumps
 size 10
 printList
-  string
+  The quick brown fox jumps over the lazy dog. lazy
 size 10
 printList
-  string
+  The quick brown fox jumps over the lazy dog. lazy
 at 0 The
 at 1 quick
 at 2 brown

@@ -1,6 +1,7 @@
 
 #include <string>
 #include <iostream>
+#include <sstream>
 #include "LinkedListInterface.h"
 
 using namespace std;
@@ -49,7 +50,7 @@ class LinkedList
     	    
     	    for (int i = 0; i < listSize - 1; i++)
     	    {
-    	        cout << "(i) " << i << ": " << endl;
+    	        //cout << "(i) " << i << ": " << endl;
     	        if (check->value == value)
     	            return;
 	            check = check->next;
@@ -124,35 +125,44 @@ class LinkedList
             cout << "remove(" << value << ")" << endl;
             
             Node* check = head;
-            int i = 0;
                 
-            for (i = 0; i < listSize; i++)
+            for (int i = 0; i < listSize; i++)
     	    {
     	       if (check->value == value)
     	       {
-    	            break;
+    	           if (i == 0)
+                    {
+                        Node *del = head;
+                        head = head->next;
+                        delete del;
+                        listSize --;
+                        return;
+                    }
+                    else if (i == listSize - 1)
+                    {
+                        check->next = NULL;
+                        return;
+                    }
+                    else
+                    {
+                        Node *node = head;
+                        for (int c = 0; c < i-1; c++) {
+                            node = node->next;
+                        }
+                        Node *del = check;
+                        
+                        cout << "checknext: " << check->next << endl;
+                        cout << "nodenext: " << node->next << endl;
+                        
+                        node->next = check->next;
+                        delete check;
+                        listSize--;
+                    }
     	       }
                check = check->next;
     	    }
             
-            if (i == 0)
-            {
-                Node *del = head;
-                head = head->next;
-                delete del;
-                listSize --;
-            }
-            else
-            {
-                Node *node = head;
-                for (int c = 0; c < i-1; c++) {
-                    node = node->next;
-                }
-                Node *del = check;
-                node->next = del->next;
-                delete del;
-                listSize--;
-            }
+            
         }
     
         void clear()
@@ -205,24 +215,25 @@ class LinkedList
     	    cout << "toString()" << endl;
     	    
     	    Node* node = head;
-    	    //basic_stringstream<T> out;
-            string s = "";
+    	    stringstream s;
+            //string s = "";
+            
             
             for(int i = 0; i < listSize; i++)
             {
                 
                 if(node->next != NULL)
                 {
-                    //out << node->value << " ";
+                    s << node->value << " ";
                 }
                 else
                 {
-                   //out << node->value; 
+                   s << node->value; 
                 }
                 node = node->next;
             }
             
-            return "string"; //out.str();
+            return s.str();
     	}
     	private:
     	    Node* head;
